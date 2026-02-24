@@ -11,35 +11,17 @@ from django.http import JsonResponse
 def health_check(request):
     try:
         from apps.accounts.models import User
-        from django.conf import settings
-        import os
-        
-        db_path = settings.DATABASES['default'].get('NAME', 'unknown')
-        db_exists = os.path.exists(db_path) if db_path != 'unknown' else False
-        db_size = os.path.getsize(db_path) if db_exists else 0
-        
         count = User.objects.count()
         return JsonResponse({
             'status': 'ok',
             'database': 'connected',
-            'user_count': count,
-            'db_path': str(db_path),
-            'db_exists': db_exists,
-            'db_size': db_size,
             'message': 'Bismi Academy Backend is running'
         })
     except Exception as e:
-        import traceback
-        import os
-        from django.conf import settings
-        db_path = settings.DATABASES['default'].get('NAME', 'unknown')
         return JsonResponse({
             'status': 'error',
             'database': 'failed',
-            'db_path': str(db_path),
-            'db_exists': os.path.exists(db_path) if db_path != 'unknown' else False,
-            'error': str(e),
-            'traceback': traceback.format_exc()
+            'error': 'Database connectivity issue'
         }, status=500)
 
 urlpatterns = [
