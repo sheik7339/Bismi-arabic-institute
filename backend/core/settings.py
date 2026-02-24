@@ -15,11 +15,7 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-change-this-in-produc
 
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = config(
-    'ALLOWED_HOSTS',
-    default='bismi-arabic-institute.onrender.com,localhost,127.0.0.1',
-    cast=Csv()
-)
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -141,19 +137,15 @@ SIMPLE_JWT = {
 }
 
 # CORS Configuration
-CORS_ALLOWED_ORIGINS = config(
-    'CORS_ALLOWED_ORIGINS',
-    default='https://bismi-arabic-institute.vercel.app,http://localhost:5173,http://localhost:3000',
-    cast=Csv()
-)
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 
 # CSRF Trusted Origins (Required for Django 4.0+)
-CSRF_TRUSTED_ORIGINS = config(
-    'CSRF_TRUSTED_ORIGINS',
-    default='https://bismi-arabic-institute.vercel.app,http://localhost:5173,http://localhost:3000',
-    cast=Csv()
-)
+CSRF_TRUSTED_ORIGINS = [
+    'https://bismi-arabic-institute.vercel.app',
+    'https://bismi-arabic-institute.onrender.com',
+    'https://bismi-arabic-institute-lpckawbsi-sheik7339s-projects.vercel.app',
+]
 
 # Security settings (enforce in production)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -162,7 +154,7 @@ if not DEBUG:
     SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
-    SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=True, cast=bool)
+    SECURE_SSL_REDIRECT = False
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True

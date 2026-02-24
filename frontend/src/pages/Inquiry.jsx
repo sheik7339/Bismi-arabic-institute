@@ -21,7 +21,9 @@ export default function Inquiry() {
 
         try {
             const baseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
-            const response = await fetch(`${baseUrl}/api/auth/inquiry/`, {
+            const url = `${baseUrl}/api/auth/inquiry/`;
+            console.log("Attempting inquiry submission at:", url);
+            const response = await fetch(url, {
                 method: 'POST',
 
                 headers: {

@@ -36,7 +36,9 @@ export default function Signup() {
 
         try {
             const baseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
-            const response = await fetch(`${baseUrl}/api/auth/register/`, {
+            const url = `${baseUrl}/api/auth/register/`;
+            console.log("Attempting signup at:", url);
+            const response = await fetch(url, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -77,10 +79,12 @@ export default function Signup() {
                 profile_photo: user.photoURL
             };
 
-            // Attempt to sync with backend, fallback to local login if backend endpoint missing
+            // Attempt to sync with backend
             try {
                 const baseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
-                const res = await fetch(`${baseUrl}/api/auth/google/`, {
+                const url = `${baseUrl}/api/auth/google/`;
+                console.log("Attempting Google sync (signup) at:", url);
+                const res = await fetch(url, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(reqUser)
