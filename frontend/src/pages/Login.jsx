@@ -20,7 +20,8 @@ export default function Login() {
 
         try {
             const rawBaseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
-            const baseUrl = rawBaseUrl.replace(/\/$/, '');
+            // Clean baseUrl: remove trailing slash and /api if they exist
+            const baseUrl = rawBaseUrl.replace(/\/$/, '').replace(/\/api$/, '');
             const url = `${baseUrl}/api/auth/login/`;
             console.log("Attempting login at:", url);
             const response = await fetch(url, {
@@ -70,7 +71,7 @@ export default function Login() {
             // Attempt to sync with backend
             try {
                 const rawBaseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
-                const baseUrl = rawBaseUrl.replace(/\/$/, '');
+                const baseUrl = rawBaseUrl.replace(/\/$/, '').replace(/\/api$/, '');
                 const url = `${baseUrl}/api/auth/google/`;
                 console.log("Attempting Google sync at:", url);
                 const res = await fetch(url, {

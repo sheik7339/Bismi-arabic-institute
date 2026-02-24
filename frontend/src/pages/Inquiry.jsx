@@ -21,7 +21,7 @@ export default function Inquiry() {
 
         try {
             const rawBaseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
-            const baseUrl = rawBaseUrl.replace(/\/$/, '');
+            const baseUrl = rawBaseUrl.replace(/\/$/, '').replace(/\/api$/, '');
             // The instruction provided a line for payments, which is not relevant to this file.
             // The existing line for inquiry already correctly uses the baseUrl.
             const url = `${baseUrl}/api/auth/inquiry/`;

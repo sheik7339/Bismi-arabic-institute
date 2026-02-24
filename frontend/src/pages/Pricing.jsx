@@ -68,7 +68,7 @@ export default function Pricing() {
         setIsLoading(true);
         try {
             const rawBaseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
-            const baseUrl = rawBaseUrl.replace(/\/$/, '');
+            const baseUrl = rawBaseUrl.replace(/\/$/, '').replace(/\/api$/, '');
             const url = `${baseUrl}/api/auth/inquiry/`;
             console.log("Attempting inquiry submission at:", url);
             await fetch(url, {
