@@ -142,6 +142,12 @@ CORS_ALLOWED_ORIGINS = os.environ.get(
 ).split(',')
 CORS_ALLOW_CREDENTIALS = True
 
+# CSRF Trusted Origins (Required for Django 4.0+)
+CSRF_TRUSTED_ORIGINS = os.environ.get(
+    'CSRF_TRUSTED_ORIGINS',
+    'http://localhost:5173,http://localhost:3000'
+).split(',')
+
 # Security settings (enforce in production)
 if not DEBUG:
     SECURE_HSTS_SECONDS = 31536000

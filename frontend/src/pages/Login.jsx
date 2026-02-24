@@ -19,7 +19,7 @@ export default function Login() {
         setError(null);
 
         try {
-            const baseUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+            const baseUrl = import.meta.env.VITE_API_URL || '';
             const response = await fetch(`${baseUrl}/api/auth/login/`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -58,7 +58,7 @@ export default function Login() {
 
             // Attempt to sync with backend, fallback to local login if backend endpoint missing
             try {
-                const baseUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+                const baseUrl = import.meta.env.VITE_API_URL || '';
                 const res = await fetch(`${baseUrl}/api/auth/google/`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
