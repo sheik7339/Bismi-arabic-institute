@@ -1,94 +1,118 @@
-# Bismi Arabic Institute - Frontend
+# 🌙 Bismi Arabic Coaching Institute
 
-Welcome to the frontend repository for the **Bismi Arabic Coaching Institute**, a premium SaaS-level platform designed to provide elite Arabic mastery, Quranic, and Tajweed education safely and seamlessly to global students.
-
-This is a production-ready, highly optimized, and meticulously designed React application crafted for speed, seamless responsive behaviors, and dark mode capability.
-
-## 🚀 Tech Stack
-
-- **Frontend Framework:** React 18 + Vite
-- **Styling:** Tailwind CSS (Vanilla setup with dynamic dark/light mode toggling)
-- **Routing:** React Router v6
-- **Icons:** Lucide React
-- **Authentication:** Firebase (Google Auth) & Custom Backend Integration context
-- **State Management:** React Context API (`AuthContext`)
-
-## 💼 Core Features
-
-- **Premium SaaS Aesthetic:** High-quality, polished UI with glassmorphism, dynamic gradients, and smooth scroll animations.
-- **Deep Authentication Integration:** Handles native login flows and incorporates Google pop-up integration tightly coupled to Django backend endpoints. 
-- **User Portal System:** A direct, no-dashboard approach to profile settings. Logged-in students can immediately change their names, contact details, and update profile avatars synchronously.
-- **Dynamic Theming:** Seamless Dark and Light mode capabilities without flash-of-unstyled-content (FOUC).
-- **Responsive Mastery:** Adapts flawlessly across Mobile phones, Tablets, and ultra-wide Desktop screens.
+A professional full-stack platform for elite Arabic mastery, featuring live sessions, course management, and automated student diagnostics.
 
 ---
 
-## 🛠 Prerequisites
+## 🚀 Features
 
-Before you begin, ensure you have the following installed on your machine:
+### 🎓 For Students
+- **Interactive Home & Landing**: Premium, responsive UI with smooth animations.
+- **User Authentication**: Secure login/signup via Email or Google (Firebase).
+- **Placement Test**: A 60-second diagnostic diagnostic to determine the best learning path.
+- **Course Catalog**: Browse foundational to advanced Arabic and Tajweed tracks.
+- **Direct Inquiries**: WhatsApp-integrated inquiry system for family/group plans.
+- **Zoom Integration**: Access to live live coaching sessions.
 
-- **Node.js** (v18.0.0 or higher recommended)
-- **npm** (comes with Node.js)
+### 🏫 For Teachers & Admins
+- **Role-Based Dashboards**: Dedicated interfaces for managing students and schedules.
+- **Course Management**: backend portal to manage curriculum and content.
+- **Payment Tracking**: Integrated handling of student subscriptions.
 
 ---
 
-## 💻 Local Development Setup
+## 🛠 Tech Stack
 
-To run this project locally, follow these precise steps:
+- **Frontend**: React (Vite), Tailwind CSS, Lucide Icons, Firebase Auth, Framer Motion (Animations).
+- **Backend**: Django, Django REST Framework, JWT Authentication, PostgreSQL/SQLite.
+- **Deployment**: Vercel (Frontend), Render (Backend).
 
-**1. Clone the Repository or Navigate into the Frontend Folder:**
+---
+
+## 📂 Project Structure
+
 ```bash
+bismi-arabic-coaching-institute/
+├── backend/            # Django REST API
+│   ├── apps/           # Local apps (accounts, courses, payments, etc.)
+│   ├── core/           # Project settings and URLs
+│   └── manage.py
+├── frontend/           # React + Vite Application
+│   ├── src/            # Components, Pages, Context
+│   └── package.json
+└── README.md
+```
+
+---
+
+## 🔨 Local Setup Instructions
+
+### 1. Prerequisities
+- Python 3.10+
+- Node.js 18+
+- Git
+
+### 2. Backend Setup
+```bash
+# Navigate to backend
+cd backend
+
+# Create virtual environment
+python -m venv venv
+# Activate it (Windows)
+.\venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run migrations
+python manage.py migrate
+
+# Start the server
+python manage.py runserver
+```
+
+> [!NOTE]
+> Ensure you have a `.env` file in the `backend/` directory for secret keys and database URLs.
+
+### 3. Frontend Setup
+```bash
+# Navigate to frontend
 cd frontend
-```
 
-**2. Install Dependencies:**
-Using NPM, install the required packages.
-```bash
+# Install dependencies
 npm install
-```
 
-**3. Run the Development Server:**
-Start the lightning-fast Vite dev server.
-```bash
+# Create your .env file
+cp .env.example .env
+
+# Start development server
 npm run dev
 ```
-The application will be running at `http://localhost:5173/`.
 
 ---
 
-## 🔗 Backend API Expected Endpoints
+## 🌍 Production Environment Variables
 
-The frontend is fully configured to talk to a Django backend server running at `http://127.0.0.1:8000/`. To avoid fetch errors, the Django environment should expose the following critical endpoints:
+To run in production (Vercel/Render), ensure the following variables are set:
 
-1. **`POST /api/auth/google/`**: Takes Google Auth user data and synchronizes it with the backend database. 
-2. **`POST /api/auth/inquiry/`**: The main lead-capture endpoint for processing pricing/course consultation inquiries smoothly.
+### Frontend (Vercel)
+- `VITE_API_URL`: Your Render backend URL.
+- `VITE_FIREBASE_API_KEY`: Firebase API Key.
+- `VITE_FIREBASE_AUTH_DOMAIN`: Firebase Auth Domain.
+- `VITE_FIREBASE_PROJECT_ID`: Firebase Project ID.
+- `VITE_FIREBASE_STORAGE_BUCKET`: Firebase Storage Bucket.
+- `VITE_FIREBASE_MESSAGING_SENDER_ID`: Firebase Messaging Sender ID.
+- `VITE_FIREBASE_APP_ID`: Firebase App ID.
 
----
-
-## 🌍 Production Deployment Guide
-
-When you are ready to put this masterpiece live on the internet (e.g., Vercel, Netlify, or AWS), run the following command to generate the optimized production build:
-
-**1. Build the Application:**
-```bash
-npm run build
-```
-This will compile the application into a highly optimized `dist/` directory.
-
-**2. Preview Production Build (Optional but Recommended):**
-```bash
-npm run preview
-```
-This lets you test the heavily minimized output to ensure everything is perfect.
-
-**3. Deploying the `dist/` Folder:**
-- **For Vercel/Netlify:** Simply link your GitHub repository, choose `Vite` as the framework preset, and they will automatically run `npm run build` and publish it for you.
-- **For Shared Hosting / Nginx / Apache:** Upload the contents of the `dist/` folder directly to the `public_html` or configuration directory.
-  - *Note for Nginx/Apache:* Ensure you add a fallback routing rule to serve `index.html` for any React Router path (e.g., `/courses`) so users don’t see a 404 error when refreshing on nested routes.
+### Backend (Render)
+- `DEBUG`: `False`
+- `SECRET_KEY`: A secure random string.
+- `ALLOWED_HOSTS`: `your-api.onrender.com,localhost`
+- `CORS_ALLOWED_ORIGINS`: `https://your-app.vercel.app,http://localhost:5173`
+- `CSRF_TRUSTED_ORIGINS`: `https://your-app.vercel.app`
 
 ---
 
-## ⚠️ Important Note
-Do NOT edit core `.jsx` files unless necessary. The exact responsive styling, padding logic, and state management rules have been fine-tuned to perfection.
-
-*Built with precision and mastery.*
+## 📜 License
+© 2026 Bismi Arabic Coaching Institute. All Rights Reserved.
