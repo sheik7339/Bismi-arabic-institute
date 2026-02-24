@@ -31,6 +31,16 @@ class LoginView(TokenObtainPairView):
     """
     serializer_class = CustomTokenObtainPairSerializer
 
+    def post(self, request, *args, **kwargs):
+        try:
+            return super().post(request, *args, **kwargs)
+        except Exception as e:
+            import traceback
+            return Response({
+                'debug_error': str(e),
+                'traceback': traceback.format_exc()
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 
 class RegisterView(generics.CreateAPIView):
     """
@@ -41,21 +51,28 @@ class RegisterView(generics.CreateAPIView):
     permission_classes = [permissions.AllowAny]
 
     def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.save()
-        return Response(
-            {
-                'message': 'Registration successful. Please log in.',
-                'user': {
-                    'id': user.id,
-                    'email': user.email,
-                    'full_name': user.full_name,
-                    'role': user.role,
-                }
-            },
-            status=status.HTTP_201_CREATED
-        )
+        try:
+            serializer = self.get_serializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            user = serializer.save()
+            return Response(
+                {
+                    'message': 'Registration successful. Please log in.',
+                    'user': {
+                        'id': user.id,
+                        'email': user.email,
+                        'full_name': user.full_name,
+                        'role': user.role,
+                    }
+                },
+                status=status.HTTP_201_CREATED
+            )
+        except Exception as e:
+            import traceback
+            return Response({
+                'debug_error': str(e),
+                'traceback': traceback.format_exc()
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class LogoutView(APIView):
@@ -287,13 +304,20 @@ class LeadCreateView(generics.CreateAPIView):
     permission_classes = [permissions.AllowAny]
 
     def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(
-            {"message": "Inquiry received successfully. Our team will contact you soon."},
-            status=status.HTTP_201_CREATED
-        )
+        try:
+            serializer = self.get_serializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response(
+                {"message": "Inquiry received successfully. Our team will contact you soon."},
+                status=status.HTTP_201_CREATED
+            )
+        except Exception as e:
+            import traceback
+            return Response({
+                'debug_error': str(e),
+                'traceback': traceback.format_exc()
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class GoogleLoginView(APIView):
@@ -304,43 +328,49 @@ class GoogleLoginView(APIView):
     permission_classes = [permissions.AllowAny]
 
     def post(self, request):
-        email = request.data.get('email')
-        full_name = request.data.get('full_name', '')
-        profile_photo = request.data.get('profile_photo', '')
+        try:
+            email = request.data.get('email')
+            full_name = request.data.get('full_name', '')
+            profile_photo = request.data.get('profile_photo', '')
 
-        if not email:
-            return Response({'error': 'Email is required.'}, status=status.HTTP_400_BAD_REQUEST)
+            if not email:
+                return Response({'error': 'Email is required.'}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Create or Get user
-        user, created = User.objects.get_or_create(
-            email=email,
-            defaults={
-                'full_name': full_name,
-                'profile_photo': profile_photo,
-                'role': User.Role.STUDENT
-            }
-        )
+            # Create or Get user
+            user, created = User.objects.get_or_create(
+                email=email,
+                defaults={
+                    'full_name': full_name,
+                    'role': User.Role.STUDENT
+                }
+            )
 
-        # If user exists but photo is missing, update it
-        if not created and profile_photo and not user.profile_photo:
-            user.profile_photo = profile_photo
-            user.save()
+            # If user exists but photo is missing, update it
+            if not created and profile_photo and not user.profile_photo:
+                user.profile_photo = profile_photo
+                user.save()
 
-        # Generate tokens
-        refresh = RefreshToken.for_user(user)
-        # Add custom claims
-        refresh['email'] = user.email
-        refresh['full_name'] = user.full_name
-        refresh['role'] = user.role
+            # Generate tokens
+            refresh = RefreshToken.for_user(user)
+            # Add custom claims
+            refresh['email'] = user.email
+            refresh['full_name'] = user.full_name
+            refresh['role'] = user.role
 
-        return Response({
-            'access': str(refresh.access_token),
-            'refresh': str(refresh),
-            'user': {
-                'id': user.id,
-                'email': user.email,
-                'full_name': user.full_name,
-                'role': user.role,
-                'profile_photo': user.profile_photo
-            }
-        })
+            return Response({
+                'access': str(refresh.access_token),
+                'refresh': str(refresh),
+                'user': {
+                    'id': user.id,
+                    'email': user.email,
+                    'full_name': user.full_name,
+                    'role': user.role,
+                    'profile_photo': user.profile_photo
+                }
+            })
+        except Exception as e:
+            import traceback
+            return Response({
+                'debug_error': str(e),
+                'traceback': traceback.format_exc()
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
