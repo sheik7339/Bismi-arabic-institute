@@ -35,7 +35,8 @@ export default function Signup() {
         setIsLoading(true);
 
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/auth/register/', {
+            const baseUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+            const response = await fetch(`${baseUrl}/api/auth/register/`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -78,7 +79,8 @@ export default function Signup() {
 
             // Attempt to sync with backend, fallback to local login if backend endpoint missing
             try {
-                const res = await fetch('http://127.0.0.1:8000/api/auth/google/', {
+                const baseUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+                const res = await fetch(`${baseUrl}/api/auth/google/`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(reqUser)

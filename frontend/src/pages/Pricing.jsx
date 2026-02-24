@@ -67,7 +67,9 @@ export default function Pricing() {
         e.preventDefault();
         setIsLoading(true);
         try {
-            await fetch('http://127.0.0.1:8000/api/auth/inquiry/', {
+            const baseUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+            await fetch(`${baseUrl}/api/auth/inquiry/`, {
+
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
