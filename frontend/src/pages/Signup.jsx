@@ -35,7 +35,8 @@ export default function Signup() {
         setIsLoading(true);
 
         try {
-            const baseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
+            const rawBaseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
+            const baseUrl = rawBaseUrl.replace(/\/$/, '');
             const url = `${baseUrl}/api/auth/register/`;
             console.log("Attempting signup at:", url);
             const response = await fetch(url, {
@@ -50,8 +51,16 @@ export default function Signup() {
             });
 
             if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.detail || Object.values(errorData)[0] || 'Signup failed');
+                const text = await response.text();
+                console.error("Signup server error:", response.status, text);
+                let errorMessage = 'Signup failed';
+                try {
+                    const errorData = JSON.parse(text);
+                    errorMessage = errorData.detail || Object.values(errorData)[0] || errorMessage;
+                } catch (e) {
+                    errorMessage = `Server Error ${response.status}: (See console)`;
+                }
+                throw new Error(errorMessage);
             }
 
             setIsSuccess(true);
@@ -81,7 +90,8 @@ export default function Signup() {
 
             // Attempt to sync with backend
             try {
-                const baseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
+                const rawBaseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
+                const baseUrl = rawBaseUrl.replace(/\/$/, '');
                 const url = `${baseUrl}/api/auth/google/`;
                 console.log("Attempting Google sync (signup) at:", url);
                 const res = await fetch(url, {

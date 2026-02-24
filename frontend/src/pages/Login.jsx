@@ -19,7 +19,8 @@ export default function Login() {
         setError(null);
 
         try {
-            const baseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
+            const rawBaseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
+            const baseUrl = rawBaseUrl.replace(/\/$/, '');
             const url = `${baseUrl}/api/auth/login/`;
             console.log("Attempting login at:", url);
             const response = await fetch(url, {
@@ -29,8 +30,16 @@ export default function Login() {
             });
 
             if (!response.ok) {
-                const errorData = await response.json().catch(() => ({ detail: 'Login failed' }));
-                throw new Error(errorData.detail || 'Invalid credentials');
+                const text = await response.text();
+                console.error("Login server error:", response.status, text);
+                let errorMessage = 'Login failed';
+                try {
+                    const errorData = JSON.parse(text);
+                    errorMessage = errorData.detail || Object.values(errorData)[0] || errorMessage;
+                } catch (e) {
+                    errorMessage = `Server Error ${response.status}: (See console)`;
+                }
+                throw new Error(errorMessage);
             }
 
             const data = await response.json();
@@ -60,7 +69,8 @@ export default function Login() {
 
             // Attempt to sync with backend
             try {
-                const baseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
+                const rawBaseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
+                const baseUrl = rawBaseUrl.replace(/\/$/, '');
                 const url = `${baseUrl}/api/auth/google/`;
                 console.log("Attempting Google sync at:", url);
                 const res = await fetch(url, {

@@ -20,7 +20,10 @@ export default function Inquiry() {
         setIsLoading(true);
 
         try {
-            const baseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
+            const rawBaseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
+            const baseUrl = rawBaseUrl.replace(/\/$/, '');
+            // The instruction provided a line for payments, which is not relevant to this file.
+            // The existing line for inquiry already correctly uses the baseUrl.
             const url = `${baseUrl}/api/auth/inquiry/`;
             console.log("Attempting inquiry submission at:", url);
             const response = await fetch(url, {
