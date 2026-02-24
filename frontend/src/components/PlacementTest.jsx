@@ -63,7 +63,7 @@ export default function PlacementTest({ isOpen, onClose }) {
         const recommendation = getRecommendation();
 
         try {
-            const baseUrl = import.meta.env.VITE_API_URL || '';
+            const baseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
             await fetch(`${baseUrl}/api/auth/inquiry/`, {
                 method: 'POST',
 

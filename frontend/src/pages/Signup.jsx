@@ -35,7 +35,7 @@ export default function Signup() {
         setIsLoading(true);
 
         try {
-            const baseUrl = import.meta.env.VITE_API_URL || '';
+            const baseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
             const response = await fetch(`${baseUrl}/api/auth/register/`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -79,7 +79,7 @@ export default function Signup() {
 
             // Attempt to sync with backend, fallback to local login if backend endpoint missing
             try {
-                const baseUrl = import.meta.env.VITE_API_URL || '';
+                const baseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
                 const res = await fetch(`${baseUrl}/api/auth/google/`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },

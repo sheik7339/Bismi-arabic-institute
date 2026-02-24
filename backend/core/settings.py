@@ -15,7 +15,11 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-change-this-in-produc
 
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=Csv())
+ALLOWED_HOSTS = config(
+    'ALLOWED_HOSTS',
+    default='bismi-arabic-institute.onrender.com,localhost,127.0.0.1',
+    cast=Csv()
+)
 
 
 # Application definition
@@ -139,7 +143,7 @@ SIMPLE_JWT = {
 # CORS Configuration
 CORS_ALLOWED_ORIGINS = config(
     'CORS_ALLOWED_ORIGINS',
-    default='http://localhost:5173,http://localhost:3000',
+    default='https://bismi-arabic-institute.vercel.app,http://localhost:5173,http://localhost:3000',
     cast=Csv()
 )
 CORS_ALLOW_CREDENTIALS = True
@@ -147,7 +151,7 @@ CORS_ALLOW_CREDENTIALS = True
 # CSRF Trusted Origins (Required for Django 4.0+)
 CSRF_TRUSTED_ORIGINS = config(
     'CSRF_TRUSTED_ORIGINS',
-    default='http://localhost:5173,http://localhost:3000',
+    default='https://bismi-arabic-institute.vercel.app,http://localhost:5173,http://localhost:3000',
     cast=Csv()
 )
 
