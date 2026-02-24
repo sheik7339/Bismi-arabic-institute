@@ -65,6 +65,9 @@ python -m venv venv
 # Install dependencies
 pip install -r requirements.txt
 
+# Create your .env file
+cp .env.example .env
+
 # Run migrations
 python manage.py migrate
 
