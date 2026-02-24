@@ -294,3 +294,53 @@ class LeadCreateView(generics.CreateAPIView):
             {"message": "Inquiry received successfully. Our team will contact you soon."},
             status=status.HTTP_201_CREATED
         )
+
+
+class GoogleLoginView(APIView):
+    """
+    POST /api/auth/google/
+    Accepts Firebase user info, creates or updates user, and returns JWT.
+    """
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request):
+        email = request.data.get('email')
+        full_name = request.data.get('full_name', '')
+        profile_photo = request.data.get('profile_photo', '')
+
+        if not email:
+            return Response({'error': 'Email is required.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Create or Get user
+        user, created = User.objects.get_or_create(
+            email=email,
+            defaults={
+                'full_name': full_name,
+                'profile_photo': profile_photo,
+                'role': User.Role.STUDENT
+            }
+        )
+
+        # If user exists but photo is missing, update it
+        if not created and profile_photo and not user.profile_photo:
+            user.profile_photo = profile_photo
+            user.save()
+
+        # Generate tokens
+        refresh = RefreshToken.for_user(user)
+        # Add custom claims
+        refresh['email'] = user.email
+        refresh['full_name'] = user.full_name
+        refresh['role'] = user.role
+
+        return Response({
+            'access': str(refresh.access_token),
+            'refresh': str(refresh),
+            'user': {
+                'id': user.id,
+                'email': user.email,
+                'full_name': user.full_name,
+                'role': user.role,
+                'profile_photo': user.profile_photo
+            }
+        })
