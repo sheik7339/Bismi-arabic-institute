@@ -9,7 +9,23 @@ from django.conf.urls.static import static
 from django.http import JsonResponse
 
 def health_check(request):
-    return JsonResponse({'status': 'ok', 'message': 'Bismi Academy Backend is running'})
+    try:
+        from apps.accounts.models import User
+        count = User.objects.count()
+        return JsonResponse({
+            'status': 'ok',
+            'database': 'connected',
+            'user_count': count,
+            'message': 'Bismi Academy Backend is running'
+        })
+    except Exception as e:
+        import traceback
+        return JsonResponse({
+            'status': 'error',
+            'database': 'failed',
+            'error': str(e),
+            'traceback': traceback.format_exc()
+        }, status=500)
 
 urlpatterns = [
     path('', health_check, name='health-check'),
