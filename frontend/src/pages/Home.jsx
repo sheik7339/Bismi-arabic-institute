@@ -94,7 +94,7 @@ export default function Home() {
         <div className="flex flex-col flex-1 w-full bg-[#f8fafc] dark:bg-slate-950 overflow-x-hidden transition-colors duration-500">
 
             {/* SECTION 1 — HERO SECTION */}
-            <section className="relative pt-8 pb-16 lg:pt-12 lg:pb-24 overflow-hidden bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-white/5">
+            <section className="relative pt-4 pb-16 lg:pt-8 lg:pb-24 overflow-hidden bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-white/5">
                 <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
                     <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]"></div>
                 </div>
