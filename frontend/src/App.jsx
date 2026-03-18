@@ -27,7 +27,7 @@ function ScrollToTop() {
             try {
                 const rawBaseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
                 const baseUrl = rawBaseUrl.replace(/\/$/, '').replace(/\/api$/, '');
-                fetch(`${baseUrl}/api/ping/`).catch(() => {}); // Fire and forget
+                fetch(`${baseUrl}/`).catch(() => {}); // Fire and forget root health check
             } catch (e) {}
         };
         wakeServer();

@@ -221,7 +221,7 @@ Please provide more information.`;
                         <p className="text-slate-500 dark:text-gray-500 font-bold mt-4 uppercase tracking-[0.1em] text-xs">We provide bespoke roadmaps for groups.</p>
                     </div>
 
-                    <div className="bg-white dark:bg-slate-900/50 backdrop-blur-3xl rounded-[4rem] border border-slate-100 dark:border-white/5 p-8 md:p-14 shadow-3xl relative overflow-hidden">
+                    <div className="bg-white dark:bg-slate-900/50 backdrop-blur-3xl rounded-[3rem] sm:rounded-[4rem] border border-slate-100 dark:border-white/5 p-6 sm:p-10 md:p-14 shadow-3xl relative overflow-hidden">
                         {isSubmitted ? (
                             <div className="text-center py-16">
                                 <div className="bg-emerald-500/10 w-28 h-28 rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 animate-bounce border border-emerald-500/20">
@@ -276,14 +276,14 @@ Please provide more information.`;
                                         <textarea
                                             placeholder="E.g. Family Qaida, Scholar Track, etc."
                                             required
-                                            className="w-full p-6 bg-slate-50 dark:bg-white/5 rounded-[2rem] border border-transparent group-hover:border-primary/20 focus:bg-white dark:focus:bg-slate-900 focus:ring-4 focus:ring-primary/5 transition-all font-black text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-gray-600 h-full min-h-[160px] resize-none outline-none"
+                                            className="w-full p-6 bg-slate-50 dark:bg-white/5 rounded-[2rem] border border-transparent group-hover:border-primary/20 focus:bg-white dark:focus:bg-slate-900 focus:ring-4 focus:ring-primary/5 transition-all font-black text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-gray-600 h-full min-h-[120px] sm:min-h-[160px] resize-none outline-none"
                                             value={formData.message}
                                             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                         ></textarea>
                                     </div>
                                     <button
                                         type="submit"
-                                        className="w-full bg-slate-950 dark:bg-white text-white dark:text-slate-950 py-6 sm:py-7 rounded-[2rem] font-black uppercase tracking-widest hover:bg-primary hover:text-white transition-all shadow-2xl flex items-center justify-center gap-4 text-xs sm:text-sm border-b-4 border-slate-800 dark:border-gray-200 active:border-b-0 active:translate-y-1"
+                                        className="w-full bg-primary text-white py-6 sm:py-7 rounded-[2rem] font-black uppercase tracking-widest hover:brightness-110 transition-all shadow-2xl flex items-center justify-center gap-4 text-xs sm:text-sm border-b-4 border-teal-800 active:border-b-0 active:translate-y-1"
                                     >
                                         Initiate Inquiry <Send className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                                     </button>
