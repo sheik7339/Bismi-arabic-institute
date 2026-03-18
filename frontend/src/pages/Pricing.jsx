@@ -221,76 +221,79 @@ Please provide more information.`;
                         <p className="text-slate-500 dark:text-gray-500 font-bold mt-4 uppercase tracking-[0.1em] text-xs">We provide bespoke roadmaps for groups.</p>
                     </div>
 
-                    <div className="bg-white dark:bg-slate-900/50 backdrop-blur-3xl rounded-[3rem] sm:rounded-[4rem] border border-slate-100 dark:border-white/5 p-6 sm:p-10 md:p-14 shadow-3xl relative overflow-hidden">
-                        {isSubmitted ? (
-                            <div className="text-center py-16">
-                                <div className="bg-emerald-500/10 w-28 h-28 rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 animate-bounce border border-emerald-500/20">
-                                    <CheckCircle className="w-14 h-14 text-emerald-500" />
-                                </div>
-                                <h3 className="text-4xl font-black text-slate-900 dark:text-white mb-4 tracking-tighter">Mubarak! Request Sent.</h3>
-                                <p className="text-slate-500 dark:text-gray-500 font-bold text-lg leading-relaxed max-w-sm mx-auto uppercase tracking-tighter">
-                                    Our coordination scholars will contact you via WhatsApp within 24 hours.
-                                </p>
-                            </div>
-                        ) : (
-                            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                                <div className="space-y-8 text-left">
-                                    <div className="relative group">
-                                        <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-3 block ml-4">Full Identity</label>
-                                        <input
-                                            type="text"
-                                            required
-                                            placeholder="Enter your name"
-                                            className="w-full p-6 bg-slate-50 dark:bg-white/5 rounded-[2rem] border border-transparent group-hover:border-primary/20 focus:bg-white dark:focus:bg-slate-900 focus:ring-4 focus:ring-primary/5 transition-all font-black text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-gray-600 outline-none"
-                                            value={formData.name}
-                                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                        />
+                        <div className="bg-white dark:bg-slate-900/50 backdrop-blur-3xl rounded-[3rem] sm:rounded-[4rem] border border-slate-100 dark:border-white/5 p-6 sm:p-10 md:p-16 shadow-[0_50px_100px_-20px_rgba(13,148,136,0.15)] relative overflow-hidden">
+                            {isSubmitted ? (
+                                <div className="text-center py-16 animate-reveal">
+                                    <div className="bg-emerald-500/10 w-28 h-28 rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 border border-emerald-500/20 shadow-2xl shadow-emerald-500/20">
+                                        <CheckCircle className="w-14 h-14 text-emerald-500" />
                                     </div>
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                        <div className="relative group text-left">
-                                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-3 block ml-4">WhatsApp Access</label>
-                                            <input
-                                                type="tel"
+                                    <h3 className="text-4xl font-black text-slate-900 dark:text-white mb-4 tracking-tighter">Mubarak! Request Sent.</h3>
+                                    <p className="text-slate-500 dark:text-gray-400 font-bold text-lg leading-relaxed max-w-sm mx-auto uppercase tracking-tighter transition-all">
+                                        Our coordination scholars will contact you via WhatsApp within 24 hours.
+                                    </p>
+                                </div>
+                            ) : (
+                                <form onSubmit={handleSubmit} className="flex flex-col gap-12">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                        <div className="space-y-8 text-left">
+                                            <div className="relative group">
+                                                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4 block ml-4">Full Identity</label>
+                                                <input
+                                                    type="text"
+                                                    required
+                                                    placeholder="Enter your name"
+                                                    className="w-full p-6 bg-slate-50 dark:bg-white/5 rounded-2xl border-none focus:ring-4 focus:ring-primary/10 transition-all font-bold text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-gray-600 outline-none"
+                                                    value={formData.name}
+                                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                                />
+                                            </div>
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                                <div className="relative group text-left">
+                                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4 block ml-4">WhatsApp Access</label>
+                                                    <input
+                                                        type="tel"
+                                                        required
+                                                        placeholder="+91-000-000-0000"
+                                                        className="w-full p-6 bg-slate-50 dark:bg-white/5 rounded-2xl border-none focus:ring-4 focus:ring-primary/10 transition-all font-bold text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-gray-600 outline-none"
+                                                        value={formData.phone}
+                                                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                                    />
+                                                </div>
+                                                <div className="relative group text-left">
+                                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4 block ml-4">Email (Optional)</label>
+                                                    <input
+                                                        type="email"
+                                                        placeholder="your@email.com"
+                                                        className="w-full p-6 bg-slate-50 dark:bg-white/5 rounded-2xl border-none focus:ring-4 focus:ring-primary/10 transition-all font-bold text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-gray-600 outline-none"
+                                                        value={formData.email}
+                                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-col text-left">
+                                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4 block ml-4">Seeking Mastery In?</label>
+                                            <textarea
+                                                placeholder="E.g. Family Qaida, Scholar Track, etc."
                                                 required
-                                                placeholder="+91-000-000-0000"
-                                                className="w-full p-6 bg-slate-50 dark:bg-white/5 rounded-[2rem] border border-transparent group-hover:border-primary/20 focus:bg-white dark:focus:bg-slate-900 focus:ring-4 focus:ring-primary/5 transition-all font-black text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-gray-600 outline-none"
-                                                value={formData.phone}
-                                                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                            />
-                                        </div>
-                                        <div className="relative group text-left">
-                                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-3 block ml-4">Email (Optional)</label>
-                                            <input
-                                                type="email"
-                                                placeholder="your@email.com"
-                                                className="w-full p-6 bg-slate-50 dark:bg-white/5 rounded-[2rem] border border-transparent group-hover:border-primary/20 focus:bg-white dark:focus:bg-slate-900 focus:ring-4 focus:ring-primary/5 transition-all font-black text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-gray-600 outline-none"
-                                                value={formData.email}
-                                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                            />
+                                                className="w-full p-6 bg-slate-50 dark:bg-white/5 rounded-2xl border-none focus:ring-4 focus:ring-primary/10 transition-all font-bold text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-gray-600 flex-1 min-h-[160px] resize-none outline-none"
+                                                value={formData.message}
+                                                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                            ></textarea>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="space-y-8 flex flex-col text-left">
-                                    <div className="relative group flex-1">
-                                        <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-3 block ml-4">Seeking Mastery In?</label>
-                                        <textarea
-                                            placeholder="E.g. Family Qaida, Scholar Track, etc."
-                                            required
-                                            className="w-full p-6 bg-slate-50 dark:bg-white/5 rounded-[2rem] border border-transparent group-hover:border-primary/20 focus:bg-white dark:focus:bg-slate-900 focus:ring-4 focus:ring-primary/5 transition-all font-black text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-gray-600 h-full min-h-[120px] sm:min-h-[160px] resize-none outline-none"
-                                            value={formData.message}
-                                            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                        ></textarea>
+                                    
+                                    <div className="flex justify-center pt-4">
+                                        <button
+                                            type="submit"
+                                            className="w-full sm:w-auto px-16 py-7 bg-primary text-white rounded-[2rem] font-black uppercase tracking-widest hover:brightness-110 hover:-translate-y-1 transition-all shadow-2xl flex items-center justify-center gap-4 text-sm border-b-4 border-teal-800 active:border-b-0 active:translate-y-1"
+                                        >
+                                            Initiate Inquiry <Send className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                                        </button>
                                     </div>
-                                    <button
-                                        type="submit"
-                                        className="w-full bg-primary text-white py-6 sm:py-7 rounded-[2rem] font-black uppercase tracking-widest hover:brightness-110 transition-all shadow-2xl flex items-center justify-center gap-4 text-xs sm:text-sm border-b-4 border-teal-800 active:border-b-0 active:translate-y-1"
-                                    >
-                                        Initiate Inquiry <Send className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-                                    </button>
-                                </div>
-                            </form>
-                        )}
-                    </div>
+                                </form>
+                            )}
+                        </div>
                 </div>
             </div>
         </div>
