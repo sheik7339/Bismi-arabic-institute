@@ -160,7 +160,7 @@ export default function Pricing() {
                                         : 'bg-slate-950 dark:bg-white text-white dark:text-slate-950 hover:bg-primary hover:text-white'
                                         }`}
                                 >
-                                    {plan.cta}
+                                    {isAuthenticated ? "Send Enquiry" : plan.cta}
                                 </Link>
                             </div>
                         </div>
@@ -204,10 +204,10 @@ export default function Pricing() {
                             <p className="text-gray-400 font-bold mb-14 leading-relaxed italic text-lg opacity-80">
                                 "Unlock the linguistic excellence of the Revelation. Start your zero-risk spiritual evolution today."
                             </p>
-                            <Link to={isAuthenticated ? "/inquiry" : "/login"} className="flex items-center justify-between bg-primary text-white p-7 rounded-[2rem] font-black group hover:bg-white hover:text-primary transition-all shadow-xl shadow-primary/20">
-                                <span className="text-lg">Try Excellence for Free</span>
-                                <ArrowRight className="w-6 h-6 group-hover:translate-x-3 transition-transform" />
-                            </Link>
+                             <Link to={isAuthenticated ? "/inquiry" : "/login"} className="flex items-center justify-between bg-primary text-white p-7 rounded-[2rem] font-black group hover:bg-white hover:text-primary transition-all shadow-xl shadow-primary/20">
+                                 <span className="text-lg">{isAuthenticated ? "Start Enquiry" : "Try Excellence for Free"}</span>
+                                 <ArrowRight className="w-6 h-6 group-hover:translate-x-3 transition-transform" />
+                             </Link>
                         </div>
                     </div>
                 </div>

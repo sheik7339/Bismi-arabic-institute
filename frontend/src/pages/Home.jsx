@@ -104,9 +104,9 @@ export default function Home() {
                         {/* Left Side */}
                         <div className="flex-1 text-center lg:text-left">
                             <div className="mb-8 flex flex-col items-center lg:items-start group">
-                                <div className="inline-flex items-center gap-3 px-6 py-2.5 rounded-2xl bg-slate-50 dark:bg-white/5 text-primary font-black text-[10px] uppercase tracking-[0.3em] border border-slate-100 dark:border-white/10 shadow-sm">
+                                <div className="inline-flex items-center gap-3 px-6 py-2.5 rounded-2xl bg-slate-50 dark:bg-white/5 text-primary dark:text-white font-black text-[10px] uppercase tracking-[0.3em] border border-slate-100 dark:border-white/10 shadow-sm">
                                     <Sparkles className="w-4 h-4 text-secondary" />
-                                    <span className="dark:text-white">Premium Arabic Institute</span>
+                                    <span>Premium Arabic Institute</span>
                                 </div>
                             </div>
 
@@ -124,7 +124,7 @@ export default function Home() {
                                     to={isAuthenticated ? "/inquiry" : "/login"}
                                     className="px-10 py-5 bg-primary text-white text-lg font-black rounded-2xl shadow-xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-all flex items-center justify-center gap-3 border-b-4 border-teal-800"
                                 >
-                                    Start Free Trial <ArrowRight className="w-5 h-5" />
+                                    {isAuthenticated ? "Start Enquiry Now" : "Start Free Trial"} <ArrowRight className="w-5 h-5" />
                                 </Link>
                                 <Link
                                     to="/courses"
@@ -299,7 +299,7 @@ export default function Home() {
                                         : 'bg-slate-950 dark:bg-white text-white dark:text-slate-950 hover:bg-primary hover:text-white'
                                         }`}
                                 >
-                                    {plan.cta}
+                                    {isAuthenticated ? "Send Enquiry" : plan.cta}
                                 </Link>
                             </div>
                         ))}
@@ -330,7 +330,7 @@ export default function Home() {
                             to={isAuthenticated ? "/inquiry" : "/signup"}
                             className="inline-flex items-center justify-center gap-6 px-16 py-8 bg-primary text-white text-3xl font-black rounded-[2.5rem] shadow-2xl shadow-primary/40 hover:shadow-primary/60 hover:-translate-y-3 transition-all group border-b-[8px] border-teal-800 active:border-b-0 active:translate-y-2"
                         >
-                            Open Account Now
+                            {isAuthenticated ? "Start Enquiry Now" : "Open Account Now"}
                             <ArrowRight className="w-8 h-8 group-hover:translate-x-4 transition-transform" />
                         </Link>
                     </div>

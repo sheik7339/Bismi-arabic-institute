@@ -172,7 +172,7 @@ const OurStory = () => {
                             to={isAuthenticated ? "/inquiry" : "/login"}
                             className="inline-flex items-center justify-center gap-4 px-12 py-7 bg-primary text-white text-2xl font-black rounded-[2rem] shadow-2xl shadow-primary/40 hover:shadow-primary/60 hover:-translate-y-2 transition-all group border-b-4 border-teal-800 active:border-b-0 active:translate-y-2"
                         >
-                            Start Free Trial
+                            {isAuthenticated ? "Start Enquiry Now" : "Start Free Trial"}
                             <ArrowRight className="w-7 h-7 group-hover:translate-x-2 transition-transform" />
                         </Link>
                     </div>

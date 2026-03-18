@@ -227,7 +227,7 @@ export default function Courses() {
 
                             <div className="flex flex-wrap gap-6">
                                 <Link to={isAuthenticated ? "/inquiry" : "/login"} className="bg-primary text-white px-12 py-6 rounded-2xl font-black hover:bg-primary/90 transition-all shadow-2xl shadow-primary/40 hover:-translate-y-1 flex items-center gap-3 border-b-4 border-teal-800 active:border-b-0 active:translate-y-1">
-                                    Start Free Trial <ArrowRight className="w-6 h-6" />
+                                    {isAuthenticated ? "Start Enquiry Now" : "Start Free Trial"} <ArrowRight className="w-6 h-6" />
                                 </Link>
                                 <button onClick={() => setIsPlacementOpen(true)} className="bg-white/10 backdrop-blur-xl text-white border border-white/20 px-10 py-5 rounded-2xl font-black hover:bg-white/20 transition-all">
                                     Placement Test
@@ -449,7 +449,7 @@ export default function Courses() {
 
                         <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-lg">
                             <Link to="/inquiry" className="flex-1 bg-primary text-white px-8 py-5 rounded-2xl font-black hover:scale-105 shadow-xl transition-all flex items-center justify-center gap-3 text-lg border-b-4 border-teal-800">
-                                Start Free Trial <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                {isAuthenticated ? "Send Enquiry" : "Start Free Trial"} <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </Link>
                             <button
                                 onClick={() => setIsPlacementOpen(true)}
