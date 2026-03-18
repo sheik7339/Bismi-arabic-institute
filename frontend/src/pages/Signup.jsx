@@ -16,6 +16,7 @@ export default function Signup() {
     const [error, setError] = useState(null);
     const [isSuccess, setIsSuccess] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [isSlowLoading, setIsSlowLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleInputChange = (e) => {
@@ -33,6 +34,8 @@ export default function Signup() {
         }
 
         setIsLoading(true);
+        setIsSlowLoading(false);
+        const slowTimeout = setTimeout(() => setIsSlowLoading(true), 3000);
 
         try {
             const rawBaseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
@@ -68,7 +71,9 @@ export default function Signup() {
         } catch (err) {
             setError(err.message);
         } finally {
+            clearTimeout(slowTimeout);
             setIsLoading(false);
+            setIsSlowLoading(false);
         }
     };
 
@@ -76,7 +81,9 @@ export default function Signup() {
 
     const handleGoogleLogin = async () => {
         setIsLoading(true);
+        setIsSlowLoading(false);
         setError(null);
+        let slowTimeout;
         try {
             const provider = new GoogleAuthProvider();
             const result = await signInWithPopup(auth, provider);
@@ -89,6 +96,7 @@ export default function Signup() {
             };
 
             // Attempt to sync with backend
+            slowTimeout = setTimeout(() => setIsSlowLoading(true), 3000);
             try {
                 const rawBaseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
                 const baseUrl = rawBaseUrl.replace(/\/$/, '').replace(/\/api$/, '');
@@ -113,7 +121,9 @@ export default function Signup() {
             setError("Google sign-in failed or was cancelled.");
             console.error(err);
         } finally {
+            if (slowTimeout) clearTimeout(slowTimeout);
             setIsLoading(false);
+            setIsSlowLoading(false);
         }
     };
 
@@ -226,6 +236,15 @@ export default function Signup() {
                                     </div>
                                 )}
 
+                                {isSlowLoading && (
+                                    <div className="rounded-2xl bg-blue-50 dark:bg-blue-500/10 p-4 border border-blue-100 dark:border-blue-500/20 flex items-start gap-3 animate-reveal">
+                                        <div className="animate-spin rounded-full h-5 w-5 border-2 border-primary border-t-transparent flex-shrink-0" />
+                                        <p className="text-[10px] text-blue-700 dark:text-blue-400 font-bold uppercase tracking-widest leading-relaxed">
+                                            Server is waking up. This may take up to 40 seconds. Please wait...
+                                        </p>
+                                    </div>
+                                )}
+
                                 <button
                                     type="submit"
                                     disabled={isLoading}
@@ -247,10 +266,11 @@ export default function Signup() {
                                     <button
                                         type="button"
                                         onClick={handleGoogleLogin}
-                                        className="flex w-full items-center justify-center gap-3 rounded-2xl bg-white dark:bg-white/5 px-4 py-4 text-xs font-black text-slate-900 dark:text-white shadow-sm ring-1 ring-inset ring-slate-200 dark:ring-white/10 hover:bg-slate-50 dark:hover:bg-white/10 transition-all hover:-translate-y-0.5 uppercase tracking-widest border border-slate-100 dark:border-white/5"
+                                        disabled={isLoading}
+                                        className={`flex w-full items-center justify-center gap-3 rounded-2xl bg-white dark:bg-white/5 px-4 py-4 text-xs font-black text-slate-900 dark:text-white shadow-sm ring-1 ring-inset ring-slate-200 dark:ring-white/10 hover:bg-slate-50 dark:hover:bg-white/10 transition-all uppercase tracking-widest border border-slate-100 dark:border-white/5 ${isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:-translate-y-0.5'}`}
                                     >
                                         <svg className="h-5 w-5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" /><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" /><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" /><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" /></svg>
-                                        Google OIDC Login
+                                        {isLoading ? 'Please wait...' : 'Google OIDC Login'}
                                     </button>
                                 </div>
                             </div>

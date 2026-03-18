@@ -12,6 +12,7 @@ import Pricing from './pages/Pricing';
 import OurStory from './pages/OurStory';
 import Inquiry from './pages/Inquiry';
 import Settings from './pages/Settings';
+import FloatingContact from './components/FloatingContact';
 // Part 2: Fix React Router Routing
 // Scroll to top on route change component for React Router v6
 function ScrollToTop() {
@@ -53,6 +54,8 @@ function AppContent() {
                     <Route path="/settings" element={<Settings />} />
                 </Routes>
             </main>
+            {/* Contact Buttons */}
+            {!hideNavAndFooter && <FloatingContact />}
 
             {/* Footer appears conditionally */}
             {!hideNavAndFooter && <Footer />}
