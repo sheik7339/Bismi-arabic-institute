@@ -4,7 +4,7 @@ export default function FloatingContact() {
     return (
         <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-4">
             <a 
-                href="tel:+918838323608" // Replacing with a common placeholder, I'll let the user change the number if needed, wait, let me use a standard placeholder or ask the user, but for now # or standard number. Or I can use a standard href="tel:"
+                href="tel:+917092873120"
                 className="bg-primary hover:bg-primary/90 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex items-center justify-center group"
                 aria-label="Call Us"
                 title="Call Us"
@@ -12,7 +12,7 @@ export default function FloatingContact() {
                 <Phone className="w-6 h-6 group-hover:scale-110 transition-transform" />
             </a>
             <a 
-                href="https://wa.me/918838323608" // Needs a placeholder number
+                href="https://wa.me/917092873120"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#25D366] hover:bg-[#20bd5a] text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex items-center justify-center group"
