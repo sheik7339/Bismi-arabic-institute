@@ -13,6 +13,7 @@ import OurStory from './pages/OurStory';
 import Inquiry from './pages/Inquiry';
 import Settings from './pages/Settings';
 import FloatingContact from './components/FloatingContact';
+import MobileBottomNav from './components/MobileBottomNav';
 // Part 2: Fix React Router Routing
 // Scroll to top on route change component for React Router v6
 function ScrollToTop() {
@@ -56,6 +57,9 @@ function AppContent() {
             </main>
             {/* Contact Buttons */}
             {!hideNavAndFooter && <FloatingContact />}
+
+            {/* Mobile Bottom Navigation */}
+            {!hideNavAndFooter && <MobileBottomNav />}
 
             {/* Footer appears conditionally */}
             {!hideNavAndFooter && <Footer />}

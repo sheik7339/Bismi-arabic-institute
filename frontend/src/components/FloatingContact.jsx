@@ -2,7 +2,7 @@ import { Phone } from 'lucide-react';
 
 export default function FloatingContact() {
     return (
-        <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-4">
+        <div className="fixed bottom-28 lg:bottom-6 right-6 z-50 flex flex-col gap-4">
             <a 
                 href="tel:+917092873120"
                 className="bg-primary hover:bg-primary/90 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex items-center justify-center group"
