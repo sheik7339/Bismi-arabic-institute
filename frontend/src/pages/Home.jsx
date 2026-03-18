@@ -121,10 +121,10 @@ export default function Home() {
 
                             <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
                                 <Link
-                                    to={isAuthenticated ? "/inquiry" : "/login"}
+                                    to="/inquiry"
                                     className="px-10 py-5 bg-primary text-white text-lg font-black rounded-2xl shadow-xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-all flex items-center justify-center gap-3 border-b-4 border-teal-800"
                                 >
-                                    {isAuthenticated ? "Start Enquiry Now" : "Start Free Trial"} <ArrowRight className="w-5 h-5" />
+                                    Start Your Journey <ArrowRight className="w-5 h-5" />
                                 </Link>
                                 <Link
                                     to="/courses"

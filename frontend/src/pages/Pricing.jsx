@@ -59,22 +59,22 @@ const PRICING_PLANS = [
 
 export default function Pricing() {
     const { isAuthenticated } = useAuth();
-    const [formData, setFormData] = useState({ name: '', phone: '', message: '' });
+    const [formData, setFormData] = useState({ name: '', phone: '', email: '', message: '' });
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        // Build the WhatsApp message
         const message = `Assalamu Alaikum! I'm interested in a Family or Institutional plan.
         
 *Details:*
 - Name: ${formData.name}
 - Phone: ${formData.phone}
+- Email: ${formData.email || 'Not provided'}
 - Interest: ${formData.message}
 
-Please provided more information.`;
+Please provide more information.`;
 
         const whatsappUrl = `https://wa.me/917092873120?text=${encodeURIComponent(message)}`;
         
@@ -246,16 +246,28 @@ Please provided more information.`;
                                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                         />
                                     </div>
-                                    <div className="relative group text-left">
-                                        <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-3 block ml-4">WhatsApp Access</label>
-                                        <input
-                                            type="tel"
-                                            required
-                                            placeholder="+91-000-000-0000"
-                                            className="w-full p-6 bg-slate-50 dark:bg-white/5 rounded-[2rem] border border-transparent group-hover:border-primary/20 focus:bg-white dark:focus:bg-slate-900 focus:ring-4 focus:ring-primary/5 transition-all font-black text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-gray-600 outline-none"
-                                            value={formData.phone}
-                                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                        />
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                        <div className="relative group text-left">
+                                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-3 block ml-4">WhatsApp Access</label>
+                                            <input
+                                                type="tel"
+                                                required
+                                                placeholder="+91-000-000-0000"
+                                                className="w-full p-6 bg-slate-50 dark:bg-white/5 rounded-[2rem] border border-transparent group-hover:border-primary/20 focus:bg-white dark:focus:bg-slate-900 focus:ring-4 focus:ring-primary/5 transition-all font-black text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-gray-600 outline-none"
+                                                value={formData.phone}
+                                                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                            />
+                                        </div>
+                                        <div className="relative group text-left">
+                                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-3 block ml-4">Email (Optional)</label>
+                                            <input
+                                                type="email"
+                                                placeholder="your@email.com"
+                                                className="w-full p-6 bg-slate-50 dark:bg-white/5 rounded-[2rem] border border-transparent group-hover:border-primary/20 focus:bg-white dark:focus:bg-slate-900 focus:ring-4 focus:ring-primary/5 transition-all font-black text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-gray-600 outline-none"
+                                                value={formData.email}
+                                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="space-y-8 flex flex-col text-left">

@@ -161,7 +161,7 @@ Please get back to me.`;
 
                             <button
                                 type="submit"
-                                className="w-full bg-primary text-white py-5 rounded-2xl font-black hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-3 shadow-lg shadow-primary/20 border-b-4 border-teal-800"
+                                className="w-full bg-primary text-white py-6 sm:py-7 rounded-[2rem] font-black uppercase tracking-widest hover:bg-primary/90 transition-all shadow-2xl flex items-center justify-center gap-4 text-xs sm:text-sm border-b-4 border-teal-800 active:border-b-0 active:translate-y-1"
                             >
                                 Send Inquiry via WhatsApp <Send className="w-5 h-5" />
                             </button>
