@@ -13,11 +13,18 @@ export default function Inquiry() {
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [isSlowLoading, setIsSlowLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
+        setIsSlowLoading(false);
+
+        // Timer for slow wake up
+        const slowTimer = setTimeout(() => {
+            setIsSlowLoading(true);
+        }, 3000);
 
         try {
             const rawBaseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
@@ -50,7 +57,9 @@ export default function Inquiry() {
             console.error('Submission error:', error);
             alert('Could not connect to the server. Please check if the backend is running.');
         } finally {
+            clearTimeout(slowTimer);
             setIsLoading(false);
+            setIsSlowLoading(false);
         }
     };
 
@@ -58,19 +67,29 @@ export default function Inquiry() {
         return (
             <div className="min-h-screen bg-[#f8fafc] dark:bg-slate-950 pt-32 pb-20 flex items-center justify-center px-4 transition-colors">
                 <div className="max-w-md w-full bg-white dark:bg-slate-900 rounded-[3rem] p-12 text-center shadow-2xl border border-gray-100 dark:border-white/5 animate-reveal">
-                    <div className="bg-primary/10 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8">
-                        <CheckCircle className="w-10 h-10 text-primary" />
+                    <div className="bg-primary/10 w-28 h-28 rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 border border-primary/20 animate-bounce">
+                        <CheckCircle className="w-14 h-14 text-primary" />
                     </div>
-                    <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-4">Request Sent!</h2>
-                    <p className="text-gray-500 dark:text-gray-400 font-medium mb-10 leading-relaxed text-center">
-                        Thank you for your interest, {formData.name.split(' ')[0]}. Our coaching team will review your message and contact you shortly to discuss your learning path.
+                    <h2 className="text-4xl font-black text-gray-900 dark:text-white mb-6 tracking-tighter">Mubarak! Request Sent.</h2>
+                    <p className="text-gray-500 dark:text-gray-400 font-bold mb-12 leading-relaxed text-center px-4 uppercase tracking-tighter">
+                        Thank you, {formData.name.split(' ')[0]}. Our coordination scholars will contact you via WhatsApp/Email within 24 hours.
                     </p>
-                    <button
-                        onClick={() => navigate('/courses')}
-                        className="w-full bg-primary text-white py-4 rounded-2xl font-black hover:shadow-xl transition-all"
-                    >
-                        Back to Courses
-                    </button>
+                    <div className="space-y-4">
+                        <a
+                            href={`https://wa.me/917092873120?text=Assalamu%20Alaikum%2C%20I%20just%20submitted%20an%20inquiry%20via%20the%20website.%20My%20name%20is%20${encodeURIComponent(formData.name)}.`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full bg-[#25D366] text-white py-6 rounded-3xl font-black shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-3 text-lg"
+                        >
+                            Contact via WhatsApp Directly
+                        </a>
+                        <button
+                            onClick={() => navigate('/courses')}
+                            className="w-full bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-gray-300 py-6 rounded-3xl font-black hover:bg-slate-200 dark:hover:bg-white/10 transition-all uppercase tracking-widest text-xs"
+                        >
+                            Explore courses while waiting
+                        </button>
+                    </div>
                 </div>
             </div>
         );
@@ -171,14 +190,23 @@ export default function Inquiry() {
                             <button
                                 type="submit"
                                 disabled={isLoading}
-                                className="w-full bg-primary text-white py-5 rounded-2xl font-black hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:hover:translate-y-0"
+                                className="w-full bg-primary text-white py-5 rounded-2xl font-black hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-3 disabled:opacity-70 disabled:hover:translate-y-0 shadow-lg shadow-primary/20 border-b-4 border-teal-800"
                             >
                                 {isLoading ? (
-                                    <span className="flex items-center gap-2">Processing...</span>
+                                    <span className="flex items-center gap-2">Transmitting Inquiry...</span>
                                 ) : (
                                     <>Send Inquiry <Send className="w-5 h-5" /></>
                                 )}
                             </button>
+
+                            {isSlowLoading && (
+                                <div className="rounded-2xl bg-blue-50 dark:bg-blue-500/10 p-5 border border-blue-100 dark:border-blue-500/20 flex items-start gap-3 animate-reveal">
+                                    <div className="animate-spin rounded-full h-5 w-5 border-2 border-primary border-t-transparent flex-shrink-0" />
+                                    <p className="text-[10px] text-blue-700 dark:text-blue-400 font-bold uppercase tracking-[0.2em] leading-relaxed">
+                                        Server is waking up (Render cold-start)... This may take 30-40 seconds. Please do not refresh.
+                                    </p>
+                                </div>
+                            )}
                             <p className="text-center text-[10px] font-bold text-gray-400 uppercase tracking-tighter">
                                 By sending this, you agree to being contacted by Bismi Arabic Coaching.
                             </p>
