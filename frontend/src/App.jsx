@@ -18,9 +18,21 @@ import MobileBottomNav from './components/MobileBottomNav';
 // Scroll to top on route change component for React Router v6
 function ScrollToTop() {
     const { pathname } = useLocation();
+    
     useEffect(() => {
         window.scrollTo(0, 0);
+        
+        // Wake up server in background
+        const wakeServer = async () => {
+            try {
+                const rawBaseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
+                const baseUrl = rawBaseUrl.replace(/\/$/, '').replace(/\/api$/, '');
+                fetch(`${baseUrl}/api/ping/`).catch(() => {}); // Fire and forget
+            } catch (e) {}
+        };
+        wakeServer();
     }, [pathname]);
+    
     return null;
 }
 

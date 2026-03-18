@@ -310,32 +310,32 @@ export default function Home() {
             </section>
 
             {/* SECTION 4 — CALL TO ACTION */}
-            <section className="py-32 max-w-7xl mx-auto px-6">
-                <div className="relative rounded-[5rem] overflow-hidden bg-slate-950 p-16 lg:p-32 text-center border border-white/10 shadow-[0_40px_100px_-20px_rgba(13,148,136,0.3)] group">
+            <section className="py-20 lg:py-32 max-w-7xl mx-auto px-4 sm:px-6">
+                <div className="relative rounded-[3rem] lg:rounded-[5rem] overflow-hidden bg-slate-950 p-10 sm:p-16 lg:p-32 text-center border border-white/10 shadow-[0_40px_100px_-20px_rgba(13,148,136,0.3)] group">
                     {/* Animated background color orbs */}
-                    <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/30 rounded-full blur-[150px] -mr-96 -mt-96 group-hover:bg-primary/40 transition-all duration-1000"></div>
-                    <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-secondary/20 rounded-full blur-[150px] -ml-96 -mb-96 group-hover:bg-secondary/30 transition-all duration-1000"></div>
+                    <div className="absolute top-0 right-0 w-[500px] lg:w-[800px] h-[500px] lg:h-[800px] bg-primary/30 rounded-full blur-[100px] lg:blur-[150px] -mr-48 lg:-mr-96 -mt-48 lg:-mt-96 group-hover:bg-primary/40 transition-all duration-1000"></div>
+                    <div className="absolute bottom-0 left-0 w-[500px] lg:w-[800px] h-[500px] lg:h-[800px] bg-secondary/20 rounded-full blur-[100px] lg:blur-[150px] -ml-48 lg:-ml-96 -mb-48 lg:-mb-96 group-hover:bg-secondary/30 transition-all duration-1000"></div>
 
                     <div className="relative z-10 flex flex-col items-center">
-                        <div className="inline-flex items-center gap-4 bg-white/10 backdrop-blur-3xl px-8 py-3 rounded-full border border-white/10 mb-14 shadow-2xl">
-                            <Star className="w-5 h-5 text-accent fill-accent animate-spin-slow" />
-                            <span className="text-white text-xs font-black uppercase tracking-[0.4em]">Elite Spiritual Evolution</span>
+                        <div className="inline-flex items-center gap-2 sm:gap-4 bg-white/10 backdrop-blur-3xl px-6 sm:px-8 py-2 sm:py-3 rounded-full border border-white/10 mb-8 sm:mb-14 shadow-2xl">
+                            <Star className="w-4 h-4 sm:w-5 sm:h-5 text-accent fill-accent animate-spin-slow" />
+                            <span className="text-white text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] sm:tracking-[0.4em]">Elite Spiritual Evolution</span>
                         </div>
-                        <h2 className="text-4xl md:text-9xl font-black text-white mb-12 leading-[0.9] tracking-tighter">
-                            Unlock Your <br />
+                        <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-black text-white mb-8 sm:mb-12 leading-[1.1] sm:leading-[0.9] tracking-tighter">
+                            Unlock Your <br className="hidden sm:block" />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-emerald-400 to-secondary italic">Potential.</span>
                         </h2>
-                        <p className="text-gray-400 text-xl md:text-3xl mb-20 max-w-3xl mx-auto font-bold leading-relaxed transition-all group-hover:text-white">
+                        <p className="text-gray-400 text-lg sm:text-xl md:text-2xl lg:text-3xl mb-12 sm:mb-20 max-w-2xl mx-auto font-bold leading-relaxed transition-all group-hover:text-white">
                             Join 2,500+ souls on the path of authentic articulation. Zero-risk trial starting today.
                         </p>
                         <a
                             href="https://wa.me/917092873120?text=Assalamu%20Alaikum!%20I%27m%20ready%20to%20start%20my%20learning%20journey%20with%20Bismi%20Arabic%20Institute.%20Please%20guide%20me."
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center gap-6 px-16 py-8 bg-primary text-white text-2xl md:text-3xl font-black rounded-[2.5rem] shadow-2xl shadow-primary/40 hover:shadow-primary/60 hover:-translate-y-3 transition-all group border-b-[8px] border-teal-800 active:border-b-0 active:translate-y-2"
+                            className="inline-flex items-center justify-center gap-4 sm:gap-6 px-10 sm:px-16 py-6 sm:py-8 bg-primary text-white text-xl sm:text-3xl font-black rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl shadow-primary/40 hover:shadow-primary/60 hover:-translate-y-3 transition-all group border-b-[6px] sm:border-b-[8px] border-teal-800 active:border-b-0 active:translate-y-2 uppercase"
                         >
-                            ENQUIRE ON WHATSAPP
-                            <ArrowRight className="w-8 h-8 group-hover:translate-x-4 transition-transform" />
+                            ENQUIRE NOW
+                            <ArrowRight className="w-6 h-6 sm:w-8 sm:h-8 group-hover:translate-x-4 transition-transform" />
                         </a>
                     </div>
                 </div>
