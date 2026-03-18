@@ -6,6 +6,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import get_user_model
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
+from django.core.mail import send_mail
+from django.conf import settings
 
 from .models import TeacherProfile, StudentProfile
 from .serializers import (
@@ -292,7 +294,35 @@ class LeadCreateView(generics.CreateAPIView):
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
+        instance = serializer.save()
+
+        # Send Email Notification
+        try:
+            subject = f"New Inquiry: {instance.full_name} - Bismi Arabic Institute"
+            message = f"""
+New Student Inquiry Received!
+
+Details:
+-----------------------------------
+Full Name:  {instance.full_name}
+Phone:      {instance.phone_number}
+Email:      {instance.email or 'Not Provided'}
+Message:    {instance.message}
+
+Received at: {instance.created_at.strftime('%Y-%m-%d %H:%M:%S')}
+-----------------------------------
+Follow up with the lead soon.
+            """
+            send_mail(
+                subject,
+                message,
+                settings.DEFAULT_FROM_EMAIL or 'noreply@bismi-academy.com',
+                [settings.INQUIRY_RECEIVER_EMAIL],
+                fail_silently=True,
+            )
+        except Exception as e:
+            print(f"Failed to send inquiry email: {e}")
+
         return Response(
             {"message": "Inquiry received successfully. Our team will contact you soon."},
             status=status.HTTP_201_CREATED
