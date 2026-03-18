@@ -236,7 +236,7 @@ export default function Home() {
                                 cta: 'Start Learning',
                                 popular: false,
                                 icon: Users,
-                                theme: 'bg-white dark:bg-white/5 border-slate-100 dark:border-white/5'
+                                theme: 'bg-white dark:bg-white/5 border-slate-100 dark:border-white/10 text-slate-900 dark:text-white'
                             },
                             {
                                 name: 'Institute Pro',
@@ -256,7 +256,7 @@ export default function Home() {
                                 cta: 'Join Scholar Track',
                                 popular: false,
                                 icon: Zap,
-                                theme: 'bg-white dark:bg-white/5 border-slate-100 dark:border-white/5'
+                                theme: 'bg-white dark:bg-white/5 border-slate-100 dark:border-white/10 text-slate-900 dark:text-white'
                             }
                         ].map((plan, i) => (
                             <div

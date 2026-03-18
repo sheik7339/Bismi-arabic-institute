@@ -56,13 +56,13 @@ export default function Inquiry() {
 
     if (isSubmitted) {
         return (
-            <div className="min-h-screen bg-background pt-32 pb-20 flex items-center justify-center px-4">
-                <div className="max-w-md w-full bg-white rounded-[3rem] p-12 text-center shadow-2xl border border-gray-100 animate-reveal">
+            <div className="min-h-screen bg-[#f8fafc] dark:bg-slate-950 pt-32 pb-20 flex items-center justify-center px-4 transition-colors">
+                <div className="max-w-md w-full bg-white dark:bg-slate-900 rounded-[3rem] p-12 text-center shadow-2xl border border-gray-100 dark:border-white/5 animate-reveal">
                     <div className="bg-primary/10 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-8">
                         <CheckCircle className="w-10 h-10 text-primary" />
                     </div>
-                    <h2 className="text-3xl font-black text-gray-900 mb-4">Request Sent!</h2>
-                    <p className="text-gray-500 font-medium mb-10 leading-relaxed">
+                    <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-4">Request Sent!</h2>
+                    <p className="text-gray-500 dark:text-gray-400 font-medium mb-10 leading-relaxed text-center">
                         Thank you for your interest, {formData.name.split(' ')[0]}. Our coaching team will review your message and contact you shortly to discuss your learning path.
                     </p>
                     <button
@@ -81,27 +81,27 @@ export default function Inquiry() {
             <div className="max-w-5xl mx-auto flex flex-col lg:flex-row gap-12 items-start">
                 {/* Left side: Info */}
                 <div className="lg:w-1/2 animate-reveal">
-                    <span className="text-primary font-black uppercase tracking-widest text-xs bg-primary/5 px-4 py-2 rounded-full inline-block mb-6">Start Your Journey</span>
-                    <h1 className="text-4xl md:text-6xl font-black text-gray-900 mb-8 leading-tight">
-                        Tell us about your <span className="text-secondary">Goals.</span>
+                    <span className="text-primary font-black uppercase tracking-widest text-xs bg-primary/5 dark:bg-primary/10 px-4 py-2 rounded-full inline-block mb-6">Start Your Journey</span>
+                    <h1 className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white mb-8 leading-tight">
+                        Tell us about your <span className="text-secondary italic">Goals.</span>
                     </h1>
-                    <p className="text-lg text-gray-500 font-medium leading-relaxed mb-10">
+                    <p className="text-lg text-gray-500 dark:text-gray-400 font-medium leading-relaxed mb-10">
                         Whether you're looking for kids' Arabic classes, Quran Tajweed, or advanced grammar, leave a message. No payments required to start a consultation.
                     </p>
 
                     <div className="space-y-6">
-                        <div className="flex items-center gap-4 bg-white p-6 rounded-2xl border border-gray-50 shadow-sm">
+                        <div className="flex items-center gap-4 bg-white dark:bg-slate-900/50 p-6 rounded-2xl border border-gray-50 dark:border-white/5 shadow-sm">
                             <div className="bg-secondary/10 p-3 rounded-xl"><MessageSquare className="w-6 h-6 text-secondary" /></div>
                             <div>
-                                <p className="font-black text-gray-900">Direct Support</p>
-                                <p className="text-sm font-medium text-gray-500">We'll reach out via WhatsApp/Call</p>
+                                <p className="font-black text-gray-900 dark:text-white">Direct Support</p>
+                                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 text-left">We'll reach out via WhatsApp/Call</p>
                             </div>
                         </div>
-                        <div className="flex items-center gap-4 bg-white p-6 rounded-2xl border border-gray-50 shadow-sm">
+                        <div className="flex items-center gap-4 bg-white dark:bg-slate-900/50 p-6 rounded-2xl border border-gray-50 dark:border-white/5 shadow-sm">
                             <div className="bg-accent/10 p-3 rounded-xl"><Phone className="w-6 h-6 text-accent" /></div>
                             <div>
-                                <p className="font-black text-gray-900">Personalized Plan</p>
-                                <p className="text-sm font-medium text-gray-500">Tailored curriculum based on your skills</p>
+                                <p className="font-black text-gray-900 dark:text-white">Personalized Plan</p>
+                                <p className="text-sm font-medium text-gray-500 dark:text-gray-400 text-left">Tailored curriculum based on your skills</p>
                             </div>
                         </div>
                     </div>
@@ -109,16 +109,16 @@ export default function Inquiry() {
 
                 {/* Right side: Form */}
                 <div className="lg:w-1/2 w-full animate-reveal" style={{ animationDelay: '0.2s' }}>
-                    <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-2xl border border-gray-100">
+                    <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 md:p-12 shadow-2xl border border-gray-100 dark:border-white/5">
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div>
                                 <label className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-3">Full Name</label>
                                 <div className="relative">
-                                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-300" />
+                                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-300 dark:text-gray-600" />
                                     <input
                                         type="text"
                                         required
-                                        className="w-full pl-12 pr-4 py-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-primary/20 transition-all font-medium"
+                                        className="w-full pl-12 pr-4 py-4 bg-gray-50 dark:bg-white/5 rounded-2xl border-none focus:ring-2 focus:ring-primary/20 transition-all font-medium text-slate-900 dark:text-white"
                                         placeholder="Enter your name"
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -130,11 +130,11 @@ export default function Inquiry() {
                                 <div>
                                     <label className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-3">Phone Number</label>
                                     <div className="relative">
-                                        <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-300" />
+                                        <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-300 dark:text-gray-600" />
                                         <input
                                             type="tel"
                                             required
-                                            className="w-full pl-12 pr-4 py-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-primary/20 transition-all font-medium"
+                                            className="w-full pl-12 pr-4 py-4 bg-gray-50 dark:bg-white/5 rounded-2xl border-none focus:ring-2 focus:ring-primary/20 transition-all font-medium text-slate-900 dark:text-white"
                                             placeholder="+91 ..."
                                             value={formData.phoneNumber}
                                             onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
@@ -144,10 +144,10 @@ export default function Inquiry() {
                                 <div>
                                     <label className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-3">Email (Optional)</label>
                                     <div className="relative">
-                                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-300" />
+                                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-300 dark:text-gray-600" />
                                         <input
                                             type="email"
-                                            className="w-full pl-12 pr-4 py-4 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-primary/20 transition-all font-medium"
+                                            className="w-full pl-12 pr-4 py-4 bg-gray-50 dark:bg-white/5 rounded-2xl border-none focus:ring-2 focus:ring-primary/20 transition-all font-medium text-slate-900 dark:text-white"
                                             placeholder="email@example.com"
                                             value={formData.email}
                                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -161,7 +161,7 @@ export default function Inquiry() {
                                 <textarea
                                     required
                                     rows="4"
-                                    className="w-full p-6 bg-gray-50 rounded-2xl border-none focus:ring-2 focus:ring-primary/20 transition-all font-medium resize-none"
+                                    className="w-full p-6 bg-gray-50 dark:bg-white/5 rounded-2xl border-none focus:ring-2 focus:ring-primary/20 transition-all font-medium resize-none text-slate-900 dark:text-white"
                                     placeholder="I want to learn Arabic for reading the Quran..."
                                     value={formData.message}
                                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}

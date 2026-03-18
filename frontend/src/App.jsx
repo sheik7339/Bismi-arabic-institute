@@ -39,7 +39,7 @@ function AppContent() {
     const hideNavAndFooter = location.pathname === '/login' || location.pathname === '/signup';
 
     return (
-        <div className="flex min-h-screen flex-col font-sans bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
+        <div className="flex min-h-screen flex-col font-sans bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-500">
             {/* Navbar appears conditionally */}
             {!hideNavAndFooter && <Navbar />}
 
