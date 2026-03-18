@@ -226,9 +226,14 @@ export default function Courses() {
                             </p>
 
                             <div className="flex flex-wrap gap-6">
-                                <Link to={isAuthenticated ? "/inquiry" : "/login"} className="bg-primary text-white px-12 py-6 rounded-2xl font-black hover:bg-primary/90 transition-all shadow-2xl shadow-primary/40 hover:-translate-y-1 flex items-center gap-3 border-b-4 border-teal-800 active:border-b-0 active:translate-y-1">
-                                    {isAuthenticated ? "Start Enquiry Now" : "Start Free Trial"} <ArrowRight className="w-6 h-6" />
-                                </Link>
+                                <a 
+                                    href="https://wa.me/917092873120?text=Assalamu%20Alaikum%2C%20I%20want%20to%20know%20more%20about%20the%20Arabic%20courses." 
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="bg-primary text-white px-12 py-6 rounded-2xl font-black hover:bg-primary/90 transition-all shadow-2xl shadow-primary/40 hover:-translate-y-1 flex items-center gap-3 border-b-4 border-teal-800 active:border-b-0 active:translate-y-1"
+                                >
+                                    Chat with Scholar <ArrowRight className="w-6 h-6" />
+                                </a>
                                 <button onClick={() => setIsPlacementOpen(true)} className="bg-white/10 backdrop-blur-xl text-white border border-white/20 px-10 py-5 rounded-2xl font-black hover:bg-white/20 transition-all">
                                     Placement Test
                                 </button>
@@ -448,9 +453,14 @@ export default function Courses() {
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-lg">
-                            <Link to="/inquiry" className="flex-1 bg-primary text-white px-8 py-5 rounded-2xl font-black hover:scale-105 shadow-xl transition-all flex items-center justify-center gap-3 text-lg border-b-4 border-teal-800">
-                                {isAuthenticated ? "Send Enquiry" : "Start Free Trial"} <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                            </Link>
+                            <a 
+                                href="https://wa.me/917092873120?text=Assalamu%20Alaikum%2C%20I%20want%20to%20enroll%20in%20a%20course%20at%20Bismi%20Arabic%20Institute." 
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex-1 bg-primary text-white px-8 py-5 rounded-2xl font-black hover:scale-105 shadow-xl transition-all flex items-center justify-center gap-3 text-lg border-b-4 border-teal-800"
+                            >
+                                Chat on WhatsApp <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            </a>
                             <button
                                 onClick={() => setIsPlacementOpen(true)}
                                 className="flex-1 bg-white/5 backdrop-blur-2xl border border-white/10 text-white px-8 py-5 rounded-2xl font-black hover:bg-white/10 transition-all text-lg"

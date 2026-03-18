@@ -153,15 +153,17 @@ export default function Pricing() {
                                     ))}
                                 </div>
 
-                                <Link
-                                    to="/inquiry"
+                                <a
+                                    href="https://wa.me/917092873120?text=Assalamu%20Alaikum%2C%20I%20want%20to%20enroll%20in%20the%20Bismi%20Arabic%20Institute."
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className={`w-full py-6 rounded-2xl font-black text-xs uppercase tracking-widest text-center transition-all shadow-xl group/btn ${plan.name === 'Institute Pro'
                                         ? 'bg-primary text-white hover:bg-white hover:text-primary'
                                         : 'bg-slate-950 dark:bg-white text-white dark:text-slate-950 hover:bg-primary hover:text-white'
                                         }`}
                                 >
-                                    {isAuthenticated ? "Send Enquiry" : plan.cta}
-                                </Link>
+                                    Chat on WhatsApp
+                                </a>
                             </div>
                         </div>
                     ))}

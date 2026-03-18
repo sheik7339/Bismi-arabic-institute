@@ -292,15 +292,17 @@ export default function Home() {
                                     ))}
                                 </ul>
 
-                                <Link
-                                    to={isAuthenticated ? "/inquiry" : "/login"}
+                                <a
+                                    href="https://wa.me/917092873120?text=Assalamu%20Alaikum%2C%20I%20want%20to%20enroll%20in%20the%20Bismi%20Arabic%20Institute."
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className={`w-full py-6 rounded-2xl font-black text-xs uppercase tracking-widest text-center transition-all shadow-xl ${plan.popular
                                         ? 'bg-primary text-white hover:bg-white hover:text-primary'
                                         : 'bg-slate-950 dark:bg-white text-white dark:text-slate-950 hover:bg-primary hover:text-white'
                                         }`}
                                 >
-                                    {isAuthenticated ? "Send Enquiry" : plan.cta}
-                                </Link>
+                                    Chat on WhatsApp
+                                </a>
                             </div>
                         ))}
                     </div>
@@ -319,7 +321,7 @@ export default function Home() {
                             <Star className="w-5 h-5 text-accent fill-accent animate-spin-slow" />
                             <span className="text-white text-xs font-black uppercase tracking-[0.4em]">Elite Spiritual Evolution</span>
                         </div>
-                        <h2 className="text-5xl md:text-9xl font-black text-white mb-12 leading-[0.9] tracking-tighter">
+                        <h2 className="text-4xl md:text-9xl font-black text-white mb-12 leading-[0.9] tracking-tighter">
                             Unlock Your <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-emerald-400 to-secondary italic">Potential.</span>
                         </h2>
