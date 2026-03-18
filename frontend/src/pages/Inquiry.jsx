@@ -21,21 +21,24 @@ export default function Inquiry() {
         setIsLoading(true);
         setIsSlowLoading(false);
 
-        // Timer for slow wake up
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 35000); // 35 second timeout
+
+        // Timer for slow wake up message
         const slowTimer = setTimeout(() => {
             setIsSlowLoading(true);
-        }, 3000);
+        }, 4000);
 
         try {
             const rawBaseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
             const baseUrl = rawBaseUrl.replace(/\/$/, '').replace(/\/api$/, '');
-            // The instruction provided a line for payments, which is not relevant to this file.
-            // The existing line for inquiry already correctly uses the baseUrl.
             const url = `${baseUrl}/api/auth/inquiry/`;
-            console.log("Attempting inquiry submission at:", url);
+            
+            console.log("Submitting form to:", url);
+            
             const response = await fetch(url, {
                 method: 'POST',
-
+                signal: controller.signal,
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -47,15 +50,27 @@ export default function Inquiry() {
                 }),
             });
 
+            clearTimeout(timeoutId);
+
             if (response.ok) {
                 setIsSubmitted(true);
             } else {
-                const data = await response.json();
-                alert(Object.values(data).join('\n') || 'Something went wrong. Please try again.');
+                let errorData;
+                try {
+                    errorData = await response.json();
+                } catch (e) {
+                    errorData = { error: 'Server error occurred. Please try WhatsApp below.' };
+                }
+                alert(Object.values(errorData).join('\n') || 'Submission failed.');
             }
         } catch (error) {
-            console.error('Submission error:', error);
-            alert('Could not connect to the server. Please check if the backend is running.');
+            clearTimeout(timeoutId);
+            if (error.name === 'AbortError') {
+                alert('Server is taking too long to respond. Please use the WhatsApp button to contact us directly.');
+            } else {
+                console.error('Submission error:', error);
+                alert('Could not connect to the server. Please check your internet or try WhatsApp below.');
+            }
         } finally {
             clearTimeout(slowTimer);
             setIsLoading(false);
@@ -200,11 +215,21 @@ export default function Inquiry() {
                             </button>
 
                             {isSlowLoading && (
-                                <div className="rounded-2xl bg-blue-50 dark:bg-blue-500/10 p-5 border border-blue-100 dark:border-blue-500/20 flex items-start gap-3 animate-reveal">
-                                    <div className="animate-spin rounded-full h-5 w-5 border-2 border-primary border-t-transparent flex-shrink-0" />
-                                    <p className="text-[10px] text-blue-700 dark:text-blue-400 font-bold uppercase tracking-[0.2em] leading-relaxed">
-                                        Server is waking up (Render cold-start)... This may take 30-40 seconds. Please do not refresh.
-                                    </p>
+                                <div className="rounded-2xl bg-amber-50 dark:bg-amber-500/10 p-5 border border-amber-100 dark:border-amber-500/20 flex flex-col gap-4 animate-reveal">
+                                    <div className="flex items-start gap-3">
+                                        <div className="animate-spin rounded-full h-5 w-5 border-2 border-primary border-t-transparent flex-shrink-0" />
+                                        <p className="text-[10px] text-amber-700 dark:text-amber-400 font-bold uppercase tracking-[0.2em] leading-relaxed">
+                                            Server is waking up (Render cold-start)... This usually takes 35s. Please wait or use WhatsApp.
+                                        </p>
+                                    </div>
+                                    <a
+                                        href={`https://wa.me/917092873120?text=Assalamu%20Alaikum%2C%20the%20website%20form%20is%20loading%20slowly.%20I%20want%20to%20inquire%20about%20Arabic%20classes.`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-center py-3 bg-[#25D366] text-white rounded-xl text-[10px] font-black uppercase tracking-widest shadow-md hover:scale-105 transition-all"
+                                    >
+                                        Inquire via WhatsApp instead
+                                    </a>
                                 </div>
                             )}
                             <p className="text-center text-[10px] font-bold text-gray-400 uppercase tracking-tighter">
