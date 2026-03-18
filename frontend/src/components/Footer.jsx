@@ -100,7 +100,7 @@ export default function Footer() {
                                 </div>
                                 <div>
                                     <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Email Us</p>
-                                    <a href="mailto:nasrinbanu.709287@gmail.com" className="text-white font-black hover:text-primary transition-colors">nasrinbanu.709287@gmail.com</a>
+                                    <a href="mailto:crazysheik2005@gmail.com" className="text-white font-black hover:text-primary transition-colors">crazysheik2005@gmail.com</a>
                                 </div>
                             </div>
                             <div className="flex gap-5">
@@ -118,7 +118,7 @@ export default function Footer() {
                                 </div>
                                 <div>
                                     <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Headquarters</p>
-                                    <p className="text-white font-black">Tiruppur, India & Male, Maldives</p>
+                                    <p className="text-white font-black text-left">Tiruppur, Tamil Nadu, India</p>
                                 </div>
                             </div>
                         </div>

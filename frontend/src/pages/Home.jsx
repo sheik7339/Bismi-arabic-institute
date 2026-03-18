@@ -328,13 +328,15 @@ export default function Home() {
                         <p className="text-gray-400 text-xl md:text-3xl mb-20 max-w-3xl mx-auto font-bold leading-relaxed transition-all group-hover:text-white">
                             Join 2,500+ souls on the path of authentic articulation. Zero-risk trial starting today.
                         </p>
-                        <Link
-                            to={isAuthenticated ? "/inquiry" : "/signup"}
-                            className="inline-flex items-center justify-center gap-6 px-16 py-8 bg-primary text-white text-3xl font-black rounded-[2.5rem] shadow-2xl shadow-primary/40 hover:shadow-primary/60 hover:-translate-y-3 transition-all group border-b-[8px] border-teal-800 active:border-b-0 active:translate-y-2"
+                        <a
+                            href="https://wa.me/917092873120?text=Assalamu%20Alaikum!%20I%27m%20ready%20to%20start%20my%20learning%20journey%20with%20Bismi%20Arabic%20Institute.%20Please%20guide%20me."
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center gap-6 px-16 py-8 bg-primary text-white text-2xl md:text-3xl font-black rounded-[2.5rem] shadow-2xl shadow-primary/40 hover:shadow-primary/60 hover:-translate-y-3 transition-all group border-b-[8px] border-teal-800 active:border-b-0 active:translate-y-2"
                         >
-                            {isAuthenticated ? "Start Enquiry Now" : "Open Account Now"}
+                            ENQUIRE ON WHATSAPP
                             <ArrowRight className="w-8 h-8 group-hover:translate-x-4 transition-transform" />
-                        </Link>
+                        </a>
                     </div>
                 </div>
             </section>

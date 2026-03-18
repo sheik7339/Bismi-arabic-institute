@@ -30,8 +30,8 @@ Please get back to me.`;
 
         const whatsappUrl = `https://wa.me/917092873120?text=${encodeURIComponent(message)}`;
         
-        // Open WhatsApp
-        window.open(whatsappUrl, '_blank');
+        // Redirect to WhatsApp - location.href is better for mobile than window.open
+        window.location.href = whatsappUrl;
         
         // Show success state
         setIsSubmitted(true);
@@ -39,29 +39,27 @@ Please get back to me.`;
 
     if (isSubmitted) {
         return (
-            <div className="min-h-screen bg-[#f8fafc] dark:bg-slate-950 pt-32 pb-20 flex items-center justify-center px-4 transition-colors">
-                <div className="max-w-md w-full bg-white dark:bg-slate-900 rounded-[3rem] p-12 text-center shadow-2xl border border-gray-100 dark:border-white/5 animate-reveal">
-                    <div className="bg-primary/10 w-28 h-28 rounded-[2.5rem] flex items-center justify-center mx-auto mb-10 border border-primary/20 animate-bounce">
-                        <CheckCircle className="w-14 h-14 text-primary" />
+            <div className="min-h-screen bg-[#f8fafc] dark:bg-slate-950 pt-20 pb-20 flex items-center justify-center px-4 transition-colors">
+                <div className="max-w-md w-full bg-white dark:bg-slate-900 rounded-[2.5rem] p-6 sm:p-10 text-center shadow-2xl border border-gray-100 dark:border-white/5 animate-reveal">
+                    <div className="bg-primary/10 w-20 h-20 rounded-[2rem] flex items-center justify-center mx-auto mb-6 border border-primary/20 animate-bounce">
+                        <CheckCircle className="w-10 h-10 text-primary" />
                     </div>
-                    <h2 className="text-4xl font-black text-gray-900 dark:text-white mb-6 tracking-tighter">Mubarak! Request Sent.</h2>
-                    <p className="text-gray-500 dark:text-gray-400 font-bold mb-12 leading-relaxed text-center px-4 uppercase tracking-tighter">
-                        Thank you, {formData.name.split(' ')[0]}. Our coordination scholars will contact you via WhatsApp/Email within 24 hours.
+                    <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-4 tracking-tighter">Request Sent!</h2>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 font-bold mb-8 leading-relaxed text-center px-2 uppercase tracking-tighter">
+                        Redirecting you to WhatsApp... If it doesn't open, click the button below.
                     </p>
-                    <div className="space-y-4">
+                    <div className="space-y-3">
                         <a
                             href={`https://wa.me/917092873120?text=Assalamu%20Alaikum%2C%20I%20just%20submitted%20an%20inquiry%20via%20the%20website.%20My%20name%20is%20${encodeURIComponent(formData.name)}.`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full bg-[#25D366] text-white py-6 rounded-3xl font-black shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-3 text-lg"
+                            className="w-full bg-[#25D366] text-white py-5 rounded-2xl font-black shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-3 text-base"
                         >
-                            Contact via WhatsApp Directly
+                            Open WhatsApp
                         </a>
                         <button
                             onClick={() => navigate('/courses')}
-                            className="w-full bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-gray-300 py-6 rounded-3xl font-black hover:bg-slate-200 dark:hover:bg-white/10 transition-all uppercase tracking-widest text-xs"
+                            className="w-full bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-gray-300 py-4 rounded-2xl font-black hover:bg-slate-200 dark:hover:bg-white/10 transition-all uppercase tracking-widest text-[10px]"
                         >
-                            Explore courses while waiting
+                            Back to Home
                         </button>
                     </div>
                 </div>

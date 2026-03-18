@@ -63,30 +63,26 @@ export default function Pricing() {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        setIsLoading(true);
-        try {
-            const rawBaseUrl = import.meta.env.VITE_API_URL || 'https://bismi-arabic-institute.onrender.com';
-            const baseUrl = rawBaseUrl.replace(/\/$/, '').replace(/\/api$/, '');
-            const url = `${baseUrl}/api/auth/inquiry/`;
-            console.log("Attempting inquiry submission at:", url);
-            await fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    full_name: formData.name,
-                    phone_number: formData.phone,
-                    message: `[Pricing Inquiry]: ${formData.message}`
-                })
-            });
-            setIsSubmitted(true);
-        } catch (error) {
-            console.error(error);
-            setIsSubmitted(true); // Fallback for dev
-        } finally {
-            setIsLoading(false);
-        }
+        
+        // Build the WhatsApp message
+        const message = `Assalamu Alaikum! I'm interested in a Family or Institutional plan.
+        
+*Details:*
+- Name: ${formData.name}
+- Phone: ${formData.phone}
+- Interest: ${formData.message}
+
+Please provided more information.`;
+
+        const whatsappUrl = `https://wa.me/917092873120?text=${encodeURIComponent(message)}`;
+        
+        // Redirect to WhatsApp
+        window.location.href = whatsappUrl;
+        
+        // Show success state
+        setIsSubmitted(true);
     };
 
     return (
@@ -206,8 +202,8 @@ export default function Pricing() {
                             <p className="text-gray-400 font-bold mb-14 leading-relaxed italic text-lg opacity-80">
                                 "Unlock the linguistic excellence of the Revelation. Start your zero-risk spiritual evolution today."
                             </p>
-                             <Link to={isAuthenticated ? "/inquiry" : "/login"} className="flex items-center justify-between bg-primary text-white p-7 rounded-[2rem] font-black group hover:bg-white hover:text-primary transition-all shadow-xl shadow-primary/20">
-                                 <span className="text-lg">{isAuthenticated ? "Start Enquiry" : "Try Excellence for Free"}</span>
+                             <Link to="/inquiry" className="flex items-center justify-between bg-primary text-white p-6 sm:p-7 rounded-[2rem] font-black group hover:bg-white hover:text-primary transition-all shadow-xl shadow-primary/20">
+                                 <span className="text-base sm:text-lg">Try Excellence for Free</span>
                                  <ArrowRight className="w-6 h-6 group-hover:translate-x-3 transition-transform" />
                              </Link>
                         </div>
@@ -275,10 +271,9 @@ export default function Pricing() {
                                     </div>
                                     <button
                                         type="submit"
-                                        disabled={isLoading}
-                                        className="w-full bg-slate-950 dark:bg-white text-white dark:text-slate-950 py-7 rounded-[2rem] font-black uppercase tracking-widest hover:bg-primary hover:text-white transition-all shadow-2xl disabled:opacity-50 flex items-center justify-center gap-4 text-sm border-b-4 border-slate-800 dark:border-gray-200 active:border-b-0 active:translate-y-1"
+                                        className="w-full bg-slate-950 dark:bg-white text-white dark:text-slate-950 py-6 sm:py-7 rounded-[2rem] font-black uppercase tracking-widest hover:bg-primary hover:text-white transition-all shadow-2xl flex items-center justify-center gap-4 text-xs sm:text-sm border-b-4 border-slate-800 dark:border-gray-200 active:border-b-0 active:translate-y-1"
                                     >
-                                        {isLoading ? 'Transmitting...' : 'Initiate Inquiry'} <Send className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                                        Initiate Inquiry <Send className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                                     </button>
                                 </div>
                             </form>

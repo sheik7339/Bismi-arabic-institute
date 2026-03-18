@@ -25,7 +25,7 @@ export default function Landing() {
                         </p>
                         <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
                             <div className="rounded-md shadow">
-                                <Link to="/register" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 md:py-4 md:text-lg md:px-10">
+                                <Link to="/inquiry" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary-dark md:py-4 md:text-lg md:px-10">
                                     Start Learning Now
                                 </Link>
                             </div>
@@ -91,7 +91,7 @@ export default function Landing() {
                                 <span className="text-5xl font-extrabold text-gray-900">₹1000</span>
                                 <span className="text-base font-medium text-gray-500">/mo</span>
                             </p>
-                            <Link to="/register" className="mt-8 block w-full bg-primary-600 border border-transparent rounded-md py-3 text-sm font-semibold text-white text-center hover:bg-primary-700">
+                            <Link to="/inquiry" className="mt-8 block w-full bg-primary-600 border border-transparent rounded-md py-3 text-sm font-semibold text-white text-center hover:bg-primary-700">
                                 Subscribe Now
                             </Link>
                         </div>
