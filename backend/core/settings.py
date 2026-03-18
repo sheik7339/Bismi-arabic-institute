@@ -171,7 +171,7 @@ print(f"ALLOWED_HOSTS: {ALLOWED_HOSTS}")
 print(f"-----------------------------")
 
 # Business Rules (for reference in views)
-SUBSCRIPTION_PRICE_INR = 500
+SUBSCRIPTION_PRICE_INR = 1000
 TEACHER_EARNING_PER_STUDENT = 200
 PLATFORM_PROFIT_PER_STUDENT = 300
 

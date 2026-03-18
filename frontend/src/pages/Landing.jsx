@@ -21,7 +21,7 @@ export default function Landing() {
                             <span className="block text-primary-600 xl:inline mt-2">from the Comfort of Your Home</span>
                         </h1>
                         <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-                            Join Amma Matharasa today. Get personal guidance from experienced Alimahs for just ₹500/month.
+                            Join Amma Matharasa today. Get personal guidance from experienced Alimahs for just ₹1000/month.
                         </p>
                         <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
                             <div className="rounded-md shadow">
@@ -88,7 +88,7 @@ export default function Landing() {
                             <h2 className="text-2xl font-semibold text-gray-900">Monthly Plan</h2>
                             <p className="mt-4 text-sm text-gray-500">All features included.</p>
                             <p className="mt-8">
-                                <span className="text-5xl font-extrabold text-gray-900">₹500</span>
+                                <span className="text-5xl font-extrabold text-gray-900">₹1000</span>
                                 <span className="text-base font-medium text-gray-500">/mo</span>
                             </p>
                             <Link to="/register" className="mt-8 block w-full bg-primary-600 border border-transparent rounded-md py-3 text-sm font-semibold text-white text-center hover:bg-primary-700">

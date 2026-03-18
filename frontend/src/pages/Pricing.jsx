@@ -24,7 +24,7 @@ const PRICING_PLANS = [
     {
         name: 'Institute Pro',
         id: 'plan-pro',
-        price: '₹1800',
+        price: '₹1000',
         description: 'Our most popular plan for serious students seeking holistic fluency.',
         features: [
             'Everything in Starter',
@@ -41,7 +41,7 @@ const PRICING_PLANS = [
     {
         name: 'Scholar Specialized',
         id: 'plan-scholar',
-        price: '₹3500',
+        price: '₹1000',
         description: 'Intensive track for those aiming for Ijazah and classical linguistics.',
         features: [
             'Everything in Pro',

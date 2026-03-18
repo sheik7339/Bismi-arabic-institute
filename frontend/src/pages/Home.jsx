@@ -23,7 +23,7 @@ const STATIC_TRENDING = [
         course_type: "Quran",
         duration_months: 6,
         level: "Intermediate",
-        price_per_month: "1800"
+        price_per_month: "1000"
     },
     {
         id: 3,
@@ -32,7 +32,7 @@ const STATIC_TRENDING = [
         course_type: "Tajweed",
         duration_months: 12,
         level: "Advanced",
-        price_per_month: "3500"
+        price_per_month: "1000"
     }
 ];
 
@@ -240,7 +240,7 @@ export default function Home() {
                             },
                             {
                                 name: 'Institute Pro',
-                                price: '₹1800',
+                                price: '₹1000',
                                 desc: 'Our most popular plan for serious students seeking fluency.',
                                 features: ['Everything in Starter', '1-on-1 Evaluation', 'Advanced Tajweed', 'Official Certification'],
                                 cta: 'Become a Pro',
@@ -250,7 +250,7 @@ export default function Home() {
                             },
                             {
                                 name: 'Scholar specialized',
-                                price: '₹3500',
+                                price: '₹1000',
                                 desc: 'Intensive track for Ijazah and classical linguistics.',
                                 features: ['Everything in Pro', 'Personal Mentorship', 'Classical Grammar', 'Ijazah Track Prep'],
                                 cta: 'Join Scholar Track',
